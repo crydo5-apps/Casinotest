@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="CRYDO5 Casino Baden - Dashboard für Spielerstatistiken und Spielhistorie">
+  <title>CRYDO5 Casino Baden - Dashboard</title>
+  <link rel="stylesheet" href="css/styles.css">
+</head>
+<body>
+
+<div class="dashboard">
+  <div class="header">
+    <div class="header-left">
+      <h1>🎰 CASINO DASHBOARD</h1>
+      <p>Echtzeit Spielerstatistiken und Spielhistorie</p>
+    </div>
+    <div class="header-right">
+      <div class="live-indicator" id="liveStatus">
+        <div class="live-dot"></div>
+        <span>LIVE</span>
+      </div>
+      <button class="btn" onclick="exportPDF()">📥 PDF Export</button>
+      <button class="btn btn-secondary" id="liveToggle" onclick="toggleLiveUpdates()">⏸ Updates stoppen</button>
+    </div>
+  </div>
+
+  <div class="stats-row" id="statsRow"></div>
+
+  <div class="controls">
+    <div class="control-group">
+      <label class="control-label">Spieler</label>
+      <select id="playerFilter">
+        <option value="">Alle Spieler</option>
+      </select>
+    </div>
+    <div class="control-group">
+      <label class="control-label">Spiel</label>
+      <select id="gameFilter">
+        <option value="">Alle Spiele</option>
+        <option value="Roulette">Roulette</option>
+        <option value="Slots">Slots</option>
+        <option value="Blackjack">Blackjack</option>
+        <option value="Poker">Poker</option>
+      </select>
+    </div>
+    <div class="control-group">
+      <label class="control-label">Sortierung</label>
+      <select id="sortFilter">
+        <option value="date">Nach Datum</option>
+        <option value="amount">Nach Einsatz</option>
+        <option value="profit">Nach Gewinn/Verlust</option>
+      </select>
+    </div>
+    <div class="control-group">
+      <label class="control-label">Zeitraum</label>
+      <select id="timeFilter">
+        <option value="all">Alle Zeiten</option>
+        <option value="today">Heute</option>
+        <option value="week">Diese Woche</option>
+        <option value="month">Dieser Monat</option>
+      </select>
+    </div>
+  </div>
+
+  <div class="advanced-stats">
+    <div class="advanced-card">
+      <div class="advanced-card-title">Top Spieler</div>
+      <div id="topPlayers"></div>
+    </div>
+    <div class="advanced-card">
+      <div class="advanced-card-title">Spiel Performance</div>
+      <div id="gamePerf"></div>
+    </div>
+    <div class="advanced-card">
+      <div class="advanced-card-title">Volatilität</div>
+      <div id="volatility"></div>
+    </div>
+  </div>
+
+  <div class="charts-row">
+    <div class="chart-container">
+      <div class="chart-title">Einsätze nach Spiel</div>
+      <div style="position: relative; height: 300px;">
+        <canvas id="gameChart" role="img" aria-label="Einsätze pro Spieltyp"></canvas>
+      </div>
+    </div>
+    <div class="chart-container">
+      <div class="chart-title">Gewinn/Verlust Trend</div>
+      <div style="position: relative; height: 300px;">
+        <canvas id="trendChart" role="img" aria-label="Gewinn/Verlust Trendverlauf"></canvas>
+      </div>
+    </div>
+  </div>
+
+  <div class="table-container">
+    <div class="table-header">
+      <div class="table-title">Spielhistorie</div>
+      <span style="color: #999; font-size: 0.9rem;" id="recordCount"></span>
+    </div>
+    <table>
+      <thead>
+        <tr>
+          <th>Zeit</th>
+          <th>Spieler</th>
+          <th>Spiel</th>
+          <th>Einsatz</th>
+          <th>Ergebnis</th>
+          <th>Gewinn/Verlust</th>
+        </tr>
+      </thead>
+      <tbody id="tableBody"></tbody>
+    </table>
+    <div class="pagination" id="pagination"></div>
+  </div>
+</div>
+
+<div class="modal" id="exportModal">
+  <div class="modal-content">
+    <div class="modal-title">📥 PDF wird erstellt...</div>
+    <div class="progress-bar">
+      <div class="progress-fill"></div>
+    </div>
+    <div class="modal-text">Bitte warten Sie einen Moment...</div>
+  </div>
+</div>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/4.4.1/chart.umd.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.10.1/html2pdf.bundle.min.js"></script>
+<script src="js/app.js"></script>
+
+</body>
+</html>
