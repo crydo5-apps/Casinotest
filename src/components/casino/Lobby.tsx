@@ -10,16 +10,16 @@ const GAMES = [
     img: "/bg/tomb.jpg",
   },
   {
+    to: "/cowboy" as const,
+    title: "El Cowboy",
+    tag: "Cluster · 6×5 Walzen",
+    img: "/bg/tomb.jpg",
+  },
+  {
     to: "/roulette" as const,
     title: "Roulette",
     tag: "Europäisch · Einzel-Zero",
     img: "/bg/roulette-table.jpg",
-  },
-  {
-    to: "/ramon" as const,
-    title: "Book of Ra(mon)",
-    tag: "Slot · Gramm · Crydo5",
-    img: "/bg/tomb.jpg",
   },
 ];
 

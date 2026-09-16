@@ -73,7 +73,7 @@ export const requestDeposit = createServerFn({ method: "POST" })
     const sql = await getSql();
     const email = await sessionEmail(context.userId);
     const id = randomHex(12);
-    const credits = data.chf;
+    const credits = data.chf * 100;
     const instant = email === ADMIN_INBOX || isAdminEmail(email);
     if (instant) {
       await sql`
