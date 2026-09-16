@@ -6,7 +6,7 @@ import { cn } from "@/lib/utils";
 
 const GAME_DE: Record<PlayGame, string> = {
   book: "Book of Ra",
-  ramon: "Book of Ra(mon)",
+  cowboy: "El Cowboy",
   roulette: "Roulette",
   shop: "Kasse",
 };

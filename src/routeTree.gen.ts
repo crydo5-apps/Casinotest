@@ -15,7 +15,7 @@ import { Route as ApproveRouteImport } from './routes/approve'
 import { Route as BookRouteImport } from './routes/book'
 import { Route as DashboardRouteImport } from './routes/dashboard'
 import { Route as LoginRouteImport } from './routes/login'
-import { Route as RamonRouteImport } from './routes/ramon'
+import { Route as CowboyRouteImport } from './routes/cowboy'
 import { Route as ResetRouteImport } from './routes/reset'
 import { Route as RouletteRouteImport } from './routes/roulette'
 import { Route as ApiGamesRouteImport } from './routes/api/games'
@@ -54,9 +54,9 @@ const LoginRoute = LoginRouteImport.update({
   path: '/login',
   getParentRoute: () => rootRouteImport,
 } as any)
-const RamonRoute = RamonRouteImport.update({
-  id: '/ramon',
-  path: '/ramon',
+const CowboyRoute = CowboyRouteImport.update({
+  id: '/cowboy',
+  path: '/cowboy',
   getParentRoute: () => rootRouteImport,
 } as any)
 const ResetRoute = ResetRouteImport.update({
@@ -102,7 +102,7 @@ export interface FileRoutesByFullPath {
   '/book': typeof BookRoute
   '/dashboard': typeof DashboardRoute
   '/login': typeof LoginRoute
-  '/ramon': typeof RamonRoute
+  '/cowboy': typeof CowboyRoute
   '/reset': typeof ResetRoute
   '/roulette': typeof RouletteRoute
   '/api/games': typeof ApiGamesRouteWithChildren
@@ -118,7 +118,7 @@ export interface FileRoutesByTo {
   '/book': typeof BookRoute
   '/dashboard': typeof DashboardRoute
   '/login': typeof LoginRoute
-  '/ramon': typeof RamonRoute
+  '/cowboy': typeof CowboyRoute
   '/reset': typeof ResetRoute
   '/roulette': typeof RouletteRoute
   '/api/games': typeof ApiGamesRouteWithChildren
@@ -135,7 +135,7 @@ export interface FileRoutesById {
   '/book': typeof BookRoute
   '/dashboard': typeof DashboardRoute
   '/login': typeof LoginRoute
-  '/ramon': typeof RamonRoute
+  '/cowboy': typeof CowboyRoute
   '/reset': typeof ResetRoute
   '/roulette': typeof RouletteRoute
   '/api/games': typeof ApiGamesRouteWithChildren
@@ -153,7 +153,7 @@ export interface FileRouteTypes {
     | '/book'
     | '/dashboard'
     | '/login'
-    | '/ramon'
+    | '/cowboy'
     | '/reset'
     | '/roulette'
     | '/api/games'
@@ -169,7 +169,7 @@ export interface FileRouteTypes {
     | '/book'
     | '/dashboard'
     | '/login'
-    | '/ramon'
+    | '/cowboy'
     | '/reset'
     | '/roulette'
     | '/api/games'
@@ -185,7 +185,7 @@ export interface FileRouteTypes {
     | '/book'
     | '/dashboard'
     | '/login'
-    | '/ramon'
+    | '/cowboy'
     | '/reset'
     | '/roulette'
     | '/api/games'
@@ -202,7 +202,7 @@ export interface RootRouteChildren {
   BookRoute: typeof BookRoute
   DashboardRoute: typeof DashboardRoute
   LoginRoute: typeof LoginRoute
-  RamonRoute: typeof RamonRoute
+  CowboyRoute: typeof CowboyRoute
   ResetRoute: typeof ResetRoute
   RouletteRoute: typeof RouletteRoute
   ApiGamesRoute: typeof ApiGamesRouteWithChildren
@@ -255,11 +255,11 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof LoginRouteImport
       parentRoute: typeof rootRouteImport
     }
-    '/ramon': {
-      id: '/ramon'
-      path: '/ramon'
-      fullPath: '/ramon'
-      preLoaderRoute: typeof RamonRouteImport
+    '/cowboy': {
+      id: '/cowboy'
+      path: '/cowboy'
+      fullPath: '/cowboy'
+      preLoaderRoute: typeof CowboyRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/reset': {
@@ -333,7 +333,7 @@ const rootRouteChildren: RootRouteChildren = {
   BookRoute: BookRoute,
   DashboardRoute: DashboardRoute,
   LoginRoute: LoginRoute,
-  RamonRoute: RamonRoute,
+  CowboyRoute: CowboyRoute,
   ResetRoute: ResetRoute,
   RouletteRoute: RouletteRoute,
   ApiGamesRoute: ApiGamesRouteWithChildren,

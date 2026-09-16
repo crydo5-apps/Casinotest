@@ -72,7 +72,7 @@ function toDash(row: LogJoin): DashGame {
 function gameFilterSql(game: string | null): string[] | null {
   if (!game) return null;
   const g = game.toLowerCase();
-  if (g === "slots" || g === "book" || g === "ramon") return ["book", "ramon"];
+  if (g === "slots" || g === "book" || g === "cowboy") return ["book", "cowboy"];
   if (g === "roulette") return ["roulette"];
   if (g === "kasse" || g === "shop") return ["shop"];
   return [game];

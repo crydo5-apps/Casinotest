@@ -142,7 +142,7 @@ export function SlotApp({
   edition: initialEdition = "classic",
   admin = false,
 }: {
-  edition?: "classic" | "ramon";
+  edition?: "classic";
   admin?: boolean;
 }) {
   const [phase, setPhase] = useState<GamePhase>("start");
@@ -189,7 +189,7 @@ export function SlotApp({
   const [paidExpand, setPaidExpand] = useState<SymbolId | null>(null);
   const [fsAward, setFsAward] = useState(10);
   const [fsSummary, setFsSummary] = useState(false);
-  const [edition, setEdition] = useState<"classic" | "ramon">(initialEdition);
+  const [edition, setEdition] = useState<"classic">(initialEdition);
 
   const lineHintRef = useRef(0);
   const busy = useRef(false);
@@ -220,14 +220,14 @@ export function SlotApp({
   const expandArmed = Boolean(paidExpand) && freeSpins === 0;
   const spinCost = expandArmed ? bet * BUY_EXPAND_MULT : bet;
   const grid = useMemo(() => gridFromStops(stops), [stops]);
-  const brandTitle = edition === "ramon" ? "Book of Ra(mon)" : copy.title;
-  const brandSub = edition === "ramon" ? "Made by Crydo5" : copy.subtitle;
-  const gram = edition === "ramon";
+  const brandTitle = copy.title;
+  const brandSub = copy.subtitle;
+  const gram = false;
   const money = (n: number) => formatCredits(n, lang, gram);
-  const creditsLabel = gram ? (lang === "de" ? "Gramm" : "Grams") : copy.credits;
+  const creditsLabel = copy.credits;
 
   const recordPlay = useCallback((kind: PlayKind, stake: number, payout: number, detail = "") => {
-    const game = editionRef.current === "ramon" ? "ramon" : "book";
+    const game = "book";
     void commitRound({ data: { game, kind, stake, payout, detail } })
       .then((r) => {
         if (typeof r.credits === "number") setCredits(r.credits);
@@ -638,9 +638,9 @@ export function SlotApp({
     return () => window.removeEventListener("keydown", onKey);
   }, [autoLeft, buyKind, doSpin, phase, showAuto, showBuy, showDeposit, showPaytable]);
 
-  const enter = (ed: "classic" | "ramon" = edition) => {
+  const enter = (ed: "classic" = edition) => {
     setEdition(ed);
-    document.title = ed === "ramon" ? "Book of Ra(mon)" : "Book of Ra";
+    document.title = "Book of Ra";
     audio.unlock();
     audio.setMuted(muted);
     audio.enter();
@@ -1215,7 +1215,7 @@ function StartScreen({
   error: boolean;
   lang: Lang;
   muted: boolean;
-  featured: "classic" | "ramon";
+  featured: "classic";
   onLang: (l: Lang) => void;
   onMute: () => void;
   onEnter: () => void;
@@ -1248,11 +1248,8 @@ function StartScreen({
       <div className="relative z-10 w-full max-w-lg px-6 pb-[max(2.5rem,env(safe-area-inset-bottom))] text-center">
         <p className="font-display text-sm uppercase tracking-[0.42em] text-gold">{copy.subtitle}</p>
         <h1 className="mt-2 font-display text-4xl font-semibold tracking-[0.12em] text-gold-2 text-balance sm:text-5xl">
-          {featured === "ramon" ? "Book of Ra(mon)" : copy.title}
+          {copy.title}
         </h1>
-        {featured === "ramon" && (
-          <p className="mt-3 font-display text-sm uppercase tracking-[0.28em] text-gold">Made by Crydo5</p>
-        )}
         <p className="mt-6 font-display text-xs uppercase tracking-[0.28em] text-muted">
           {error ? copy.loading : copy.tapToEnter}
         </p>

@@ -4,7 +4,7 @@ import { authMiddleware } from "@/lib/auth/middleware";
 import { getSql } from "@/lib/db";
 import { randomHex } from "@/lib/random-id";
 
-export const PLAY_GAMES = ["book", "ramon", "roulette", "shop"] as const;
+export const PLAY_GAMES = ["book", "cowboy", "roulette", "shop"] as const;
 export const PLAY_KINDS = [
   "spin",
   "free_spin",
