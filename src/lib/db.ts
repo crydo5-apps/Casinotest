@@ -94,6 +94,43 @@ function createNeonSql(): Promise<Sql> {
     types.setTypeParser(OID_DATE, identity);
     types.setTypeParser(OID_INTERVAL, identity);
     const pool = new Pool({ connectionString: databaseUrl });
+
+    // Apply migrations at runtime (build-time migrate.mjs may have failed).
+    try {
+      await pool.query(
+        "CREATE TABLE IF NOT EXISTS _migrations (name TEXT PRIMARY KEY, applied_at TIMESTAMPTZ NOT NULL DEFAULT now())",
+      );
+      const applied = (
+        await pool.query("SELECT name FROM _migrations")
+      ).rows.map((r: { name: string }) => r.name);
+
+      const migrations = import.meta.glob("/migrations/*.sql", {
+        query: "?raw",
+        import: "default",
+        eager: true,
+      }) as Record<string, string>;
+
+      for (const { name, path } of pendingMigrations(
+        Object.keys(migrations),
+        applied,
+      )) {
+        try {
+          await pool.query("BEGIN");
+          await pool.query(migrations[path]);
+          await pool.query("INSERT INTO _migrations (name) VALUES ($1)", [name]);
+          await pool.query("COMMIT");
+          console.log(`[db] applied migration: ${name}`);
+        } catch (err) {
+          console.error(`[db] migration ${name} failed:`, (err as Error).message);
+          try {
+            await pool.query("ROLLBACK");
+          } catch {}
+        }
+      }
+    } catch (err) {
+      console.error("[db] migration check failed:", (err as Error).message);
+    }
+
     return toSql(async <T>(text: string, params: unknown[]) => {
       const res = await pool.query(text, params);
       return res.rows as T[];
