@@ -321,7 +321,9 @@
   animation: cowShotTarget 0.4s both;
 }
 .cow-sym.has-art {
-  background: var(--art) center/contain no-repeat;
+  background-size: contain !important;
+  background-position: center !important;
+  background-repeat: no-repeat !important;
   color: transparent;
 }
 .cow-sym {

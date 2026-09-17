@@ -712,7 +712,7 @@ export function CowboyApp({ admin }: { admin?: boolean }) {
                       )}
                       style={
                         {
-                          "--art": hasArt ? `url("${ASSET_ROOT}${ASSET[aId]}")` : undefined,
+                          backgroundImage: hasArt ? `url("${ASSET_ROOT}${ASSET[aId]}")` : undefined,
                         } as CSSProperties
                       }
                       aria-label={symbolLabel(item, c)}
