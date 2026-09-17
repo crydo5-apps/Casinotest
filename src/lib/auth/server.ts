@@ -122,7 +122,7 @@ const baseURL = explicitBaseURL ?? {
 
 // Origins Better Auth accepts on credentialed POSTs (sign-up/sign-in, etc.).
 // Missing entries here surface as FORBIDDEN "Invalid origin".
-const trustedOrigins: string[] = [
+const trustedOrigins: string[] = [      // Accept random Vercel preview deployment hostnames.      "https://*.vercel.app",      "https://*.vercel.app/",
   // Explicit deploy URL + trailing-slash variant
   ...(explicitBaseURL ? [explicitBaseURL, `${explicitBaseURL}/`] : []),
   // Vercel deployment URL (auto-detected from Vercel env vars)
