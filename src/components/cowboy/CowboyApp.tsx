@@ -707,6 +707,7 @@ export function CowboyApp({ admin }: { admin?: boolean }) {
                     <span
                       className={cn(
                         "cow-sym absolute inset-[6%] grid place-items-center rounded-md text-[14px] font-extrabold leading-none sm:text-[20px]",
+                        hasArt && "has-art",
                         symbolClass(item),
                       )}
                       style={
