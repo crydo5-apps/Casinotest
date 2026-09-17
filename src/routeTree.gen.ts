@@ -13,9 +13,10 @@ import { Route as IndexRouteImport } from './routes/index'
 import { Route as AdminRouteImport } from './routes/admin'
 import { Route as ApproveRouteImport } from './routes/approve'
 import { Route as BookRouteImport } from './routes/book'
-import { Route as DashboardRouteImport } from './routes/dashboard'
-import { Route as LoginRouteImport } from './routes/login'
 import { Route as CowboyRouteImport } from './routes/cowboy'
+import { Route as DashboardRouteImport } from './routes/dashboard'
+import { Route as GatesRouteImport } from './routes/gates'
+import { Route as LoginRouteImport } from './routes/login'
 import { Route as ResetRouteImport } from './routes/reset'
 import { Route as RouletteRouteImport } from './routes/roulette'
 import { Route as ApiGamesRouteImport } from './routes/api/games'
@@ -44,19 +45,24 @@ const BookRoute = BookRouteImport.update({
   path: '/book',
   getParentRoute: () => rootRouteImport,
 } as any)
+const CowboyRoute = CowboyRouteImport.update({
+  id: '/cowboy',
+  path: '/cowboy',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const DashboardRoute = DashboardRouteImport.update({
   id: '/dashboard',
   path: '/dashboard',
   getParentRoute: () => rootRouteImport,
 } as any)
+const GatesRoute = GatesRouteImport.update({
+  id: '/gates',
+  path: '/gates',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const LoginRoute = LoginRouteImport.update({
   id: '/login',
   path: '/login',
-  getParentRoute: () => rootRouteImport,
-} as any)
-const CowboyRoute = CowboyRouteImport.update({
-  id: '/cowboy',
-  path: '/cowboy',
   getParentRoute: () => rootRouteImport,
 } as any)
 const ResetRoute = ResetRouteImport.update({
@@ -100,9 +106,10 @@ export interface FileRoutesByFullPath {
   '/admin': typeof AdminRoute
   '/approve': typeof ApproveRoute
   '/book': typeof BookRoute
-  '/dashboard': typeof DashboardRoute
-  '/login': typeof LoginRoute
   '/cowboy': typeof CowboyRoute
+  '/dashboard': typeof DashboardRoute
+  '/gates': typeof GatesRoute
+  '/login': typeof LoginRoute
   '/reset': typeof ResetRoute
   '/roulette': typeof RouletteRoute
   '/api/games': typeof ApiGamesRouteWithChildren
@@ -116,9 +123,10 @@ export interface FileRoutesByTo {
   '/admin': typeof AdminRoute
   '/approve': typeof ApproveRoute
   '/book': typeof BookRoute
-  '/dashboard': typeof DashboardRoute
-  '/login': typeof LoginRoute
   '/cowboy': typeof CowboyRoute
+  '/dashboard': typeof DashboardRoute
+  '/gates': typeof GatesRoute
+  '/login': typeof LoginRoute
   '/reset': typeof ResetRoute
   '/roulette': typeof RouletteRoute
   '/api/games': typeof ApiGamesRouteWithChildren
@@ -133,9 +141,10 @@ export interface FileRoutesById {
   '/admin': typeof AdminRoute
   '/approve': typeof ApproveRoute
   '/book': typeof BookRoute
-  '/dashboard': typeof DashboardRoute
-  '/login': typeof LoginRoute
   '/cowboy': typeof CowboyRoute
+  '/dashboard': typeof DashboardRoute
+  '/gates': typeof GatesRoute
+  '/login': typeof LoginRoute
   '/reset': typeof ResetRoute
   '/roulette': typeof RouletteRoute
   '/api/games': typeof ApiGamesRouteWithChildren
@@ -151,9 +160,10 @@ export interface FileRouteTypes {
     | '/admin'
     | '/approve'
     | '/book'
-    | '/dashboard'
-    | '/login'
     | '/cowboy'
+    | '/dashboard'
+    | '/gates'
+    | '/login'
     | '/reset'
     | '/roulette'
     | '/api/games'
@@ -167,9 +177,10 @@ export interface FileRouteTypes {
     | '/admin'
     | '/approve'
     | '/book'
-    | '/dashboard'
-    | '/login'
     | '/cowboy'
+    | '/dashboard'
+    | '/gates'
+    | '/login'
     | '/reset'
     | '/roulette'
     | '/api/games'
@@ -183,9 +194,10 @@ export interface FileRouteTypes {
     | '/admin'
     | '/approve'
     | '/book'
-    | '/dashboard'
-    | '/login'
     | '/cowboy'
+    | '/dashboard'
+    | '/gates'
+    | '/login'
     | '/reset'
     | '/roulette'
     | '/api/games'
@@ -200,9 +212,10 @@ export interface RootRouteChildren {
   AdminRoute: typeof AdminRoute
   ApproveRoute: typeof ApproveRoute
   BookRoute: typeof BookRoute
-  DashboardRoute: typeof DashboardRoute
-  LoginRoute: typeof LoginRoute
   CowboyRoute: typeof CowboyRoute
+  DashboardRoute: typeof DashboardRoute
+  GatesRoute: typeof GatesRoute
+  LoginRoute: typeof LoginRoute
   ResetRoute: typeof ResetRoute
   RouletteRoute: typeof RouletteRoute
   ApiGamesRoute: typeof ApiGamesRouteWithChildren
@@ -241,6 +254,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof BookRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/cowboy': {
+      id: '/cowboy'
+      path: '/cowboy'
+      fullPath: '/cowboy'
+      preLoaderRoute: typeof CowboyRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/dashboard': {
       id: '/dashboard'
       path: '/dashboard'
@@ -248,18 +268,18 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof DashboardRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/gates': {
+      id: '/gates'
+      path: '/gates'
+      fullPath: '/gates'
+      preLoaderRoute: typeof GatesRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/login': {
       id: '/login'
       path: '/login'
       fullPath: '/login'
       preLoaderRoute: typeof LoginRouteImport
-      parentRoute: typeof rootRouteImport
-    }
-    '/cowboy': {
-      id: '/cowboy'
-      path: '/cowboy'
-      fullPath: '/cowboy'
-      preLoaderRoute: typeof CowboyRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/reset': {
@@ -331,9 +351,10 @@ const rootRouteChildren: RootRouteChildren = {
   AdminRoute: AdminRoute,
   ApproveRoute: ApproveRoute,
   BookRoute: BookRoute,
-  DashboardRoute: DashboardRoute,
-  LoginRoute: LoginRoute,
   CowboyRoute: CowboyRoute,
+  DashboardRoute: DashboardRoute,
+  GatesRoute: GatesRoute,
+  LoginRoute: LoginRoute,
   ResetRoute: ResetRoute,
   RouletteRoute: RouletteRoute,
   ApiGamesRoute: ApiGamesRouteWithChildren,

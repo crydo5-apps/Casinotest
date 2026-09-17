@@ -4,6 +4,12 @@ import { signOut } from "@/lib/auth/client";
 
 const GAMES = [
   {
+    to: "/gates" as const,
+    title: "Gates of Olympus 1000",
+    tag: "Slot · 6×5 Scatter · Tumble · Bis 15,000×",
+    img: "/bg/gates-olympus.jpg",
+  },
+  {
     to: "/book" as const,
     title: "Book of Ra",
     tag: "Slot · 6 Walzen · 25 Linien",
